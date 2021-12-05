@@ -6,15 +6,19 @@ const int N = 1e5 + 10;
 vector <int> g[N];
 bool visited[N];
 void DFS(int vertex) {
+    //Take action on vertex after entering the vertex
     cout << vertex << endl;
     visited[vertex] = true;
     for (int child : g[vertex]) {
+        
         //printing overall flow of DFS
         cout << " Par " << vertex << " Child " << child << endl;
         if (visited[child]) continue;
-
+        //Take action on child before entering the child node
         DFS(child);
+        //Take action on child after exeting the child node
     }
+    //Take action on vertex before exeting the vertex
 }
 int main()
 {
