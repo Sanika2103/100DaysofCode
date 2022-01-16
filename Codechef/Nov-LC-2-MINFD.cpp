@@ -1,5 +1,5 @@
 #include <iostream>
-#include<string>
+#include<algorithm>
 using namespace std;
 
 int main()
@@ -7,22 +7,25 @@ int main()
     int t;
     cin >> t;
     while (t--) {
-        int a1, b1, c1, a2, b2, c2;
-        cin >> a1 >> b1 >> c1;
-        cin >> a2 >> b2 >> c2;
-        int sum1 = a1 + b1 + c1;
-        int sum2 = a2 + b2 + c2;
-        if (sum1 > sum2) cout << "DRAGON\n";
-        else if (sum1 == sum2) {
-            if (a1 > a2) cout << "DRAGON\n";
-            else if (a1 == a2 && b1 != b2 ) {
-                if (b1 > b2) cout << "DRAGON\n";
-                else cout << "SLOTH\n";
-            }
-            else if (a1 == a2 && b1 == b2) cout << "TIE\n";
-            else cout << "SLOTH\n";
+        int a, x;
+        cin >> a >> x;
+        int sum = 0;
+        int m[a];
+        for (int i = 0; i < a; ++i) {
+            cin >> m[i];
         }
-        else cout << "SLOTH\n";
+        sort(m, m + a, greater<int>());
+        for (int i = 0; i < a; ++i) {
+            sum += m[i];
+            if (sum >= x) {
+                cout << i + 1 << endl;
+                break;
+            }
+        }
+
+        if (sum < x) cout << -1 << endl;
+
+
     }
     return 0;
 }
